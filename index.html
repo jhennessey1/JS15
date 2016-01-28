@@ -10,16 +10,16 @@
 	<body ng-controller="calendRoller">
 		<ul>
 			<li class="dates" ng-repeat="newDate in dates">
-				<h4>{{ newDate.date | date:"MM/dd/yyyy" }} <button ng-click="makeAppointment()">Make Appointment</button></h4>
-				<form ng-show="clickAppointment">
-					<input placeholder="event...." ng-model="app">
-					<input type='submit' value='Submit' ng-click="subApp()">
+				<h4>{{ newDate.date | date:"MM/dd/yyyy" }} <button ng-click="makeAppointment(newDate)">Make Appointment</button></h4>
+				<form ng-show="newDate.clickAppointment">
+					<input placeholder="what's happening?" ng-model="newDate.appointment">
+					<input type='submit' value='Submit' ng-click="subApp(newDate)">
 				</form>	
-				<ul ng-show="submitApp">
-					<li ng-repeat="appointment in newDate.appointments">{{newDate.appointments}}</li>
+				<ul>
+					<li ng-repeat="appointment in newDate.appointments">{{appointment}}</li>
 				</ul>	
 			</li>
 		</ul>
-		<button ng-click="maxNum()">Click for more</button>
+		<button ng-click="maxNum()">More Days...</button>
 	</body>
 </html>

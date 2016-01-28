@@ -10,20 +10,23 @@ angular.module('calendar')
 			for(var i = y; i < x; i++) {
 				$scope.newDate = {
 					date: new Date().setDate(today.getDate() + i),
-					appointments: []
+					appointments: [],
+					clickAppointment: false,
 				}
 				$scope.dates.push($scope.newDate)
 				$scope.newDate = {}
 			}
 		}
 
-		$scope.makeAppointment = function() {
-			$scope.clickAppointment = true
+		$scope.makeAppointment = function(date) {
+			date.clickAppointment = true
 		}
 
-		$scope.subApp = function() {
-			$scope.clickAppointment = false
-			$scope.submitApp = true
+		$scope.subApp = function(date) {
+			date.clickAppointment = false
+			date.appointments.push(date.appointment)
+			console.log($scope.dates)
+			date.appointment = ''
 		}
 
 		$scope.maxNum = function() {
@@ -32,5 +35,6 @@ angular.module('calendar')
 			$scope.addDateObj()
 		}
 		$scope.addDateObj()
+
 	}])
 

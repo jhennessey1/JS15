@@ -9,14 +9,15 @@
 	</head>
 	<body ng-controller="calendRoller">
 		<ul>
-			<li ng-repeat="date in dates">
-				<h4>{{date | date:"MM/dd/yyyy"}}</h4>
-				<button ng-click="makeAppointment()">Make Appointment</button>
+			<li class="dates" ng-repeat="newDate in dates">
+				<h4>{{ newDate.date | date:"MM/dd/yyyy" }} <button ng-click="makeAppointment()">Make Appointment</button></h4>
 				<form ng-show="clickAppointment">
-					<input placeholder="event....">
-					<input type="time" placeholder="hh:mm">
-					<input type='submit' value='Submit'>
-				</form>
+					<input placeholder="event...." ng-model="app">
+					<input type='submit' value='Submit' ng-click="subApp()">
+				</form>	
+				<ul ng-show="submitApp">
+					<li ng-repeat="appointment in newDate.appointments">{{newDate.appointments}}</li>
+				</ul>	
 			</li>
 		</ul>
 		<button ng-click="maxNum()">Click for more</button>

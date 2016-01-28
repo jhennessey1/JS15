@@ -3,44 +3,34 @@ angular.module('calendar', [])
 angular.module('calendar')
 	.controller('calendRoller', ['$scope', function($scope){
 		$scope.dates = []
-		// $scope.dateAdder = function(date) {
-		// 	for(var i = 0; i < 40; i++) {
-		// 		$scope.dates.push((date.getMonth()+1) + "/" + (date.getDate()+i) + "/" + date.getFullYear())
-		// 	}
-		// }
-		// $scope.date = {
-		// 	day: '',
-		// 	month: '',
-		// 	year: '',
-		// 	appointments: []
-		// }
-		// $scope.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-		$scope.clickAppointment = false
-		$scope.today = new Date()
-		
-		$scope.addDate = function(i) {
-			$scope.dates.push(new Date().setDate($scope.today.getDate() + i))
-		}
-		$scope.x = 15
-		$scope.y = 0
-		$scope.maxNum = function() {
-			$scope.x += 15
-			$scope.y += 15
-			$scope.addMore()
-		}
-
-		$scope.addMore = function() {
-			for(var i = $scope.y; i < $scope.x; i++) {
-				$scope.addDate(i)
+		var x = 15
+		var y = 0
+		var today = new Date()
+		$scope.addDateObj = function() {
+			for(var i = y; i < x; i++) {
+				$scope.newDate = {
+					date: new Date().setDate(today.getDate() + i),
+					appointments: []
+				}
+				$scope.dates.push($scope.newDate)
+				$scope.newDate = {}
 			}
 		}
+
 		$scope.makeAppointment = function() {
 			$scope.clickAppointment = true
 		}
-		
-		
-		
 
-		$scope.addMore()
+		$scope.subApp = function() {
+			$scope.clickAppointment = false
+			$scope.submitApp = true
+		}
+
+		$scope.maxNum = function() {
+			x += 15
+			y += 15
+			$scope.addDateObj()
+		}
+		$scope.addDateObj()
 	}])
 

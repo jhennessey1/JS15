@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="calendar">
+	<head>
+		<title>JS15: Infinite Agenda</title>
+		<link rel="stylesheet" href="main.css"/>
+		<link rel="stylesheet" href="normalize.css"/>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+	</head>
+	<body ng-controller="calendRoller">
+		<ul>
+			<li ng-repeat="date in dates">
+				<h4>{{date | date:"MM/dd/yyyy"}}</h4>
+				<button ng-click="makeAppointment()">Make Appointment</button>
+				<form ng-show="clickAppointment">
+					<input placeholder="event....">
+					<input type="time" placeholder="hh:mm">
+					<input type='submit' value='Submit'>
+				</form>
+			</li>
+		</ul>
+		<button ng-click="maxNum()">Click for more</button>
+	</body>
+</html>

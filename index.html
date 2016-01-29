@@ -16,7 +16,7 @@
 					<input type='submit' value='Submit' ng-click="subApp(newDate)">
 				</form>	
 				<ul>
-					<li ng-repeat="appointment in newDate.appointments">{{appointment}}</li>
+					<li ng-repeat="appointment in newDate.appointments" ng-click="changeApp(newDate)">{{appointment}}</li>
 				</ul>	
 			</li>
 		</ul>
